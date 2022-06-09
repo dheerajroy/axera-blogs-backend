@@ -96,6 +96,7 @@ WSGI_APPLICATION = 'AxeraBlogs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'CONN_MAX_AGE': 3600,
         'NAME': 'axeraBlogs',
         'USER': 'axera',
         'PASSWORD': 'dheeraj123',
