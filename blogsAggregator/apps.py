@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.conf import settings
 
 
 class BlogsaggregatorConfig(AppConfig):
@@ -8,4 +9,5 @@ class BlogsaggregatorConfig(AppConfig):
 
     def ready(self):
         from .updater import start
-        start()
+        if settings.SCHEDULER_AUTOSTART:
+            start()
