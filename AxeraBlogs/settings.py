@@ -171,6 +171,8 @@ SCHEDULER_CONFIG = {
 }
 SCHEDULER_AUTOSTART = True
 
+CSRF_TRUSTED_ORIGINS=['https://api.axerablogs.com']
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
