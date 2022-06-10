@@ -3,6 +3,8 @@ import feedparser
 from datetime import timedelta
 from django.utils import timezone
 from .models import RSSLink, Blog
+import django.db
+
 
 class BlogsAggregator:
     def clean_summary(self, summary):
@@ -10,6 +12,7 @@ class BlogsAggregator:
         return soup.get_text()
 
     def set_blogs(self):
+        django.db.close_old_connections()
         rss_link = RSSLink.objects.all().order_by('?')
         for link in rss_link:
             blogs = feedparser.parse(link.link)['entries']
@@ -24,5 +27,6 @@ class BlogsAggregator:
                     pass
 
     def delete_old_blogs(self):
+        django.db.close_old_connections()
         current_datetime = timezone.now()
         Blog.objects.filter(uploaded_datetime__lte=current_datetime-timedelta(hours=24)).delete()

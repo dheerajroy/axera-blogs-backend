@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'blogs',
     'blogsAggregator',
     'employees',
-    'django_apscheduler'
 ]
 
 MIDDLEWARE = [
@@ -161,16 +160,6 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-SCHEDULER_CONFIG = {
-    "apscheduler.jobstores.default": {
-        "class": "django_apscheduler.jobstores:DjangoJobStore"
-    },
-    'apscheduler.executors.processpool': {
-        "type": "threadpool"
-    },
-}
-SCHEDULER_AUTOSTART = True
 
 CSRF_TRUSTED_ORIGINS=['https://api.axerablogs.com']
 
