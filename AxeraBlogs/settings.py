@@ -152,6 +152,8 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Manually Added
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 if DEBUG:
@@ -161,7 +163,7 @@ else:
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CSRF_TRUSTED_ORIGINS=['https://api.axerablogs.com']
+# CSRF_TRUSTED_ORIGINS=['https://api.axerablogs.com']
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
