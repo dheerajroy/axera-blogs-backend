@@ -9,13 +9,16 @@ import re
 
 class BlogsAggregator:
     def get_image(self, data):
-        soup = BeautifulSoup(str(data), 'html.parser')
-        a = soup.find('img')
-        if a is not None:
-            return a.get('src')
-        else:
-            return re.search(r'(?:http|https):.*?\.(?:png|jpg|svg|jpeg)')
+        link = re.search(r"""(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))""", data)
+        if link is not None:
+            link = link.group(0)
             
+        elif link is None:
+            soup = BeautifulSoup(data, 'html.parser')
+            a = soup.find('img')
+            if a is not None:
+                link = a.get('src')
+        return link
     def clean_summary(self, summary):
         soup = BeautifulSoup(summary, 'html.parser')
         return soup.get_text()
@@ -29,7 +32,7 @@ class BlogsAggregator:
                 try:
                     Blog.objects.create(topic=link.topic,
                                         title=blog.title,
-                                        cover_image=self.get_image(blog),
+                                        cover_image=self.get_image(str(blog)),
                                         summary=self.clean_summary(blog.summary),
                                         link=blog.link)
                 except Exception:
