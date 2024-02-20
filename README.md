@@ -14,7 +14,7 @@ Django was used to build the backend hence the following steps needs to be follo
    3. `python manage.py createsuperuser` and follow the prompts
    4. `python manage.py runserver` to start the server
    5. Visit  [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) and login. Create some blog posts, add some topics and RSS feed links of your favorite websites to include it in the explore page of the platform
-5. You're done!
+5. You're done! now setup the frontend as well from [[here](https://github.com/dheerajroy/axera-blogs-frontend)](https://github.com/dheerajroy/axera-blogs-frontend)
 
 ## This is how the admin panel looks like
 ![admin panel](/readme_media/admin.png)
